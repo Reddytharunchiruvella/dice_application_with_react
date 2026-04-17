@@ -1,0 +1,21 @@
+.winnerContainer {
+  border: 1px solid grey;
+  text-align: center;
+  align-content: center;
+  color: white;
+  background-color: rgba(244, 120, 120, 0.6);
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  height: 330px;
+  width: 50%;
+  line-height: 1.8;
+  transform: translate(-50%);
+  z-index: 10;
+}
+.winnerWonBtn {
+  padding: 10px 30px;
+  text-align: center;
+  border-radius: 40px;
+  cursor: pointer;
+}

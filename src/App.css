@@ -1,0 +1,66 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+section {
+  background: url("../src/assets/dice-backgroundimage-1.webp");
+  background-size: cover;
+  background-position: center;
+  height: 665px;
+  align-content: center;
+  justify-items: center;
+}
+.root-1 {
+  text-align: center;
+  width: 60%;
+  padding: 50px 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.topBtns{
+  position: absolute;
+  top: 120px;
+  margin-left: 365px;
+}
+.middleBtns{
+  position: absolute;
+  top: 400px;
+  margin-left: 365px;
+}
+.icon{
+  margin-right: 4px;
+  font-size: 13px;
+}
+.playerone{
+  height: 500px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playertwo{
+  height: 500px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.root-2{
+  display: flex;
+  position: absolute;
+  bottom: 100px;
+}
+.active{
+  background-color: rgba(255, 255, 255,0.2);
+}
+.inactive{
+  background-color: rgba(0, 0, 0,0.5);
+}

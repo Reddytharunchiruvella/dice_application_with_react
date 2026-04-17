@@ -1,0 +1,26 @@
+.player12{
+  margin-bottom: 100px;
+  padding: 15px 10px;
+}
+.player12 p {
+  font-size: 40px;
+  padding-top: 20px;
+  color: red;
+  font-weight: 200;
+}
+.player12 h2 {
+  font-weight: 300;
+  color: white;
+}
+.current12 {
+  background-color: red;
+  height: 80px;
+  padding: 15px 10px;
+  font-size: 12px;
+  border-radius: 2px;
+}
+.current12 p {
+  color: white;
+  font-size: 18px;
+  padding: 8px;
+}
