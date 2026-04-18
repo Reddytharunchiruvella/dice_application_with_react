@@ -1,11 +1,14 @@
 import "./playerCurrentScores.styles.css"
 
-export const PlayerCurrentScores = ({Playername , playerscore , currentscore, activeplayer}) => {
+export const PlayerCurrentScores = ({Playername , playerscore , currentscore, playeractive}) => {
+
+    let activeOne = playeractive ? "player-active" : "" ;
+
     return (
         <>
-        <div className="playerCurrentDiv">
+        <div className={activeOne}>
             <div className="player12">
-                <h2 id="activeplayer">{Playername}</h2>
+                <h2 className="playername">{Playername}</h2>
                 <p>{playerscore ? playerscore : 0}</p>
             </div>
             <div className="current12">

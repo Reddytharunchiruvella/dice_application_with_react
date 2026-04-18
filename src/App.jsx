@@ -29,10 +29,12 @@ function App() {
   const [input, setInput] = useState(10);
 
   const [showWinnerPopup, setWinnerPopup] = useState(false);
-  const [showEditPopup, setshowEditPopup] = useState(false);
-  const [showRulesPopup, setshowRulesPopup] = useState(false);
   const [winnerName, setWinnerName] = useState("");
   const [winnerScore, setWinnerScore] = useState(0);
+  const [showEditPopup, setshowEditPopup] = useState(false);
+  const [player1Name, setplayer1Name] = useState("Player1");
+  const [player2Name, setplayer2Name] = useState("Player2");
+  const [showRulesPopup, setshowRulesPopup] = useState(false);
 
   const rollDice = () => {
     const randomNum = Math.ceil(Math.random() * 6);
@@ -48,11 +50,6 @@ function App() {
     setWinnerName(name);
     setWinnerScore(score);
     setWinnerPopup(!showWinnerPopup);
-  };
-
-  const EditFunc = () => {
-    setshowEditPopup(!showEditPopup);
-    console.log("called");
   };
 
   const holdDice = () => {
@@ -87,6 +84,18 @@ function App() {
     setInput(e.target.value);
   };
 
+  const EditFunc = () => {
+    setshowEditPopup(!showEditPopup);
+  };
+
+  const player1access = (e) => {
+    setplayer1Name(e.target.value)
+  }
+
+  const player2access = (e) => {
+    setplayer2Name(e.target.value)
+  }
+
   const RuleFunc = () => {
     setshowRulesPopup(!showRulesPopup);
   };
@@ -105,9 +114,9 @@ function App() {
             </div>
 
             <PlayerCurrentScores
-              Playername="PLAYER 1"
+              Playername={player1Name}
               playerscore={playerScore[0]}
-              activeplayer={activePlayer}
+              playeractive={activePlayer === 0}
               currentscore={activePlayer === 0 ? currentScore : 0}
             />
             <Diceimage randomNum={randomGenNum} />
@@ -126,78 +135,12 @@ function App() {
           </div>
           <div className={`playertwo ${!activePlayer ? "active" : "inactive"}`}>
             <PlayerCurrentScores
-              Playername="PLAYER 2"
+              Playername={player2Name}
               playerscore={playerScore[1]}
-              activeplayer={activePlayer}
+              playeractive={activePlayer === 1}
               currentscore={activePlayer === 1 ? currentScore : 0}
             />
           </div>
-
-          {/* <div className="header">
-            <TransparentBtn
-              BtnName="NEW GAME"
-              newgame={NewGame}
-              icon={<FaCirclePlus className="icon" />}
-            />
-          </div>
-
-          <div className="middlepart">
-            <div
-              className={`playerone ${activePlayer ? "active" : "inactive"}`}
-            >
-              <PlayerCurrentScores
-                Playername="PLAYER 1"
-                playerscore={playerScore[0]}
-                activeplayer={activePlayer}
-                currentscore={activePlayer === 0 ? currentScore : 0}
-              />
-            </div>
-            <div>
-              <Diceimage randomNum={randomGenNum} />
-              <TransparentBtn
-                rollDiceFunc={rollDice}
-                BtnName="ROLL DICE"
-                icon={<FaDice className="icon" />}
-              />
-              <TransparentBtn
-                holdDiceFunc={holdDice}
-                BtnName="HOLD"
-                icon={<FaPause className="icon" />}
-              />
-            </div>
-            <div
-              className={`playertwo ${!activePlayer ? "active" : "inactive"}`}
-            >
-              <PlayerCurrentScores
-                Playername="PLAYER 2"
-                playerscore={playerScore[1]}
-                activeplayer={activePlayer}
-                currentscore={activePlayer === 1 ? currentScore : 0}
-              />
-            </div>
-          </div>
-
-          <div className="footer">
-            <PrimaryBtn
-              BtnName="NORMAL MODE"
-              icon={<FaMugHot className="icon" />}
-            />
-            <SecondaryBtn
-              BtnName="HARD MODE"
-              icon={<FaSkullCrossbones className="icon" />}
-            />
-            <InputBtn inputFunc={Input} />
-            <SecondaryBtn
-              BtnName="RULES"
-              icon={<FaRegClipboard className="icon" />}
-            />
-            <PrimaryBtn
-              BtnName="EDIT PLAYER NAME"
-              icon={<FaRegPenToSquare className="icon" />}
-              clickEditBtn={EditFunc}
-            />
-            {showEditPopup && <EditBtn editclose={EditFunc} />}
-          </div> */}
         </div>
         <div className="root-2">
           <PrimaryBtn
@@ -230,7 +173,7 @@ function App() {
             closeBtn={callingWinnerFunc}
           />
         )}
-        {showEditPopup && <EditBtn editclose={EditFunc} />}
+        {showEditPopup && <EditBtn editclose={EditFunc} player1Name={player1access} player2Name={player2access}/>}
         {showRulesPopup && <RulesBtn ruleclose={RuleFunc} />}
       </div>
     </>

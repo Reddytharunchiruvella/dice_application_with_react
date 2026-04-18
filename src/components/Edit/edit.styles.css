@@ -3,7 +3,8 @@
   text-align: center;
   align-content: center;
   color: white;
-  background-color: rgb(68, 109, 245);
+  background: url("/src/assets/editdice_backgroundimg.avif");
+  background-size: cover;
   position: absolute;
   top: 190px;
   left: 50%;
@@ -12,6 +13,16 @@
   line-height: 1.8;
   transform: translate(-50%);
   z-index: 10;
+}
+.editbutton::before {
+  content: "";
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  z-index: -1;
 }
 .inputEdit {
   padding: 12px 30px;
@@ -24,7 +35,7 @@
   border-radius: 40px;
   cursor: pointer;
 }
-#editP{
+#editP {
   color: red;
   display: none;
 }
