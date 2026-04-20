@@ -7,11 +7,8 @@ export const RulesBtn = ({ ruleclose }) => {
         <h1>Rules Of The Game!!!</h1>
         <ul id="ul">
           <li>Enter the player names before the game start.</li>
-          <li>One player has only one chance to roll the dice.</li>
-          <li>
-            Active player gets the second chance to roll the dice, if the 
-            dice score is equal to six.
-          </li>
+          <li>When you click on the start game, we provided some options to play the game.</li>
+          <li>When player roll the dice as "1", then his current score become "0" and the oppoent get's the chance to play.</li>
         </ul>
         <button className="ruleok" onClick={ruleclose}>
           Okay...

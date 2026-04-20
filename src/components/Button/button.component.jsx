@@ -13,11 +13,19 @@ export const PrimaryBtn = ({ BtnName, icon, clickEditBtn }) => {
   );
 };
 
-export const SecondaryBtn = ({ BtnName, icon, clickRuleBtn }) => {
+export const SecondaryBtn = ({
+  BtnName,
+  icon,
+  clickRuleBtn,
+  clickHardModeBtn,
+}) => {
   return (
     <>
       <div className="Secondary">
-        <button className="Secondary_button" onClick={clickRuleBtn}>
+        <button
+          className="Secondary_button"
+          onClick={clickRuleBtn || clickHardModeBtn}
+        >
           {icon} {BtnName}
         </button>
       </div>
@@ -30,6 +38,7 @@ export const TransparentBtn = ({
   rollDiceFunc,
   holdDiceFunc,
   newgame,
+  startgame,
   icon,
 }) => {
   return (
@@ -37,7 +46,8 @@ export const TransparentBtn = ({
       <div className="Transparent">
         <button
           className="Transparent_button"
-          onClick={rollDiceFunc || holdDiceFunc || newgame}>
+          onClick={rollDiceFunc || holdDiceFunc || newgame || startgame}
+        >
           {icon}
           {BtnName}
         </button>

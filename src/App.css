@@ -21,9 +21,12 @@ section {
   align-items: center;
 }
 .topBtns{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   position: absolute;
   top: 120px;
-  margin-left: 365px;
+  margin-left: 380px;
 }
 .middleBtns{
   position: absolute;

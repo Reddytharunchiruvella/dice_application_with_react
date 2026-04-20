@@ -1,11 +1,16 @@
 import "./edit.styles.css";
 
-export const EditBtn = ({editclose, player1Name, player2Name}) => {
+export const EditBtn = ({
+  editclose,
+  player1Name,
+  player2Name,
+  showwarning,
+}) => {
   return (
     <>
       <div className="editbutton">
         <h1 id="edit-text">Edit Player Names!!!</h1>
-        <p id="editP">Fill the Required Names...?</p>
+        <p id="editP">{showwarning}</p>
         <input
           className="inputEdit"
           id="input1"
@@ -22,7 +27,9 @@ export const EditBtn = ({editclose, player1Name, player2Name}) => {
           onChange={player2Name}
         />
         <br />
-        <button className="EditOk" onClick={editclose}>OK...</button>
+        <button className="EditOk" onClick={editclose}>
+          OK...
+        </button>
       </div>
     </>
   );

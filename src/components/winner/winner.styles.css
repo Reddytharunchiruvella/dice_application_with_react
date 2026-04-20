@@ -1,26 +1,27 @@
 .winnerContainer {
   border: 1px solid grey;
+  border-radius: 10px;
   text-align: center;
   align-content: center;
   color: white;
-  background: url("/src/assets/winner-bacgroundimg.jpg");
+  background: url("/src/assets/winnerpopup.jpg");
   background-size: cover;
   position: absolute;
-  top: 170px;
+  top: 200px;
   left: 50%;
-  height: 330px;
-  width: 50%;
+  height: 290px;
+  width: 43%;
   line-height: 1.8;
   transform: translate(-50%);
   z-index: 10;
 }
 .winnerContainer::before {
   content: "";
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 0;
   left: 0;
-  height: 330px;
+  height: 280px;
   width: 100%;
   z-index: -1;
 }
@@ -29,4 +30,7 @@
   text-align: center;
   border-radius: 40px;
   cursor: pointer;
+}
+.winnerContainer h1{
+  margin-bottom: 60px;
 }

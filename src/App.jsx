@@ -15,6 +15,7 @@ import {
   FaSkullCrossbones,
   FaPause,
   FaRegPenToSquare,
+  FaArrowRotateRight,
 } from "react-icons/fa6";
 import { Winner } from "./components/winner/winner.component";
 import { PlayerCurrentScores } from "./components/playerCurrentScores/playerCurrentScores.components";
@@ -28,21 +29,37 @@ function App() {
   const [playerScore, setPlayerScore] = useState([0, 0]);
   const [input, setInput] = useState(10);
 
+  const [startGame, setStartGame] = useState(false);
+  const [hardMode, setHardMode] = useState(false);
+
   const [showWinnerPopup, setWinnerPopup] = useState(false);
   const [winnerName, setWinnerName] = useState("");
   const [winnerScore, setWinnerScore] = useState(0);
+
   const [showEditPopup, setshowEditPopup] = useState(false);
   const [player1Name, setplayer1Name] = useState("Player1");
   const [player2Name, setplayer2Name] = useState("Player2");
+  const [showWarning, setShowWarning] = useState("");
+
   const [showRulesPopup, setshowRulesPopup] = useState(false);
 
   const rollDice = () => {
     const randomNum = Math.ceil(Math.random() * 6);
     setrandomGenNum(randomNum);
-    if (activePlayer === 0) {
-      setCurrentScore(currentScore + randomNum);
+
+    if (randomNum !== 1) {
+      if (activePlayer === 0) {
+        setCurrentScore(currentScore + randomNum);
+      } else {
+        setCurrentScore(currentScore + randomNum);
+      }
     } else {
-      setCurrentScore(currentScore + randomNum);
+      if (activePlayer === 0) {
+        setCurrentScore(0);
+      } else {
+        setCurrentScore(0);
+      }
+      setactivePlayer(1 - activePlayer);
     }
   };
 
@@ -58,13 +75,13 @@ function App() {
 
     if (activePlayer === 0) {
       if (updatedScore[activePlayer] >= input) {
-        callingWinnerFunc("player 1", updatedScore[activePlayer]);
+        callingWinnerFunc(player1Name, updatedScore[activePlayer]);
       } else {
         setactivePlayer(1 - activePlayer);
       }
     } else {
       if (updatedScore[activePlayer] >= input) {
-        callingWinnerFunc("player 2", updatedScore[activePlayer]);
+        callingWinnerFunc(player2Name, updatedScore[activePlayer]);
       } else {
         setactivePlayer(1 - activePlayer);
       }
@@ -78,6 +95,12 @@ function App() {
     setPlayerScore([0, 0]);
     setactivePlayer(0);
     setrandomGenNum(1);
+    setplayer1Name("Player1");
+    setplayer2Name("Player2");
+  };
+
+  const StartGame = () => {
+    setStartGame(!startGame);
   };
 
   const Input = (e) => {
@@ -88,16 +111,30 @@ function App() {
     setshowEditPopup(!showEditPopup);
   };
 
+  const editCLose = () => {
+    if (player1Name === "Player1" || player2Name === "Player2") {
+      setShowWarning("Player names required");
+      return;
+    } else {
+      setShowWarning("");
+      setshowEditPopup(!showEditPopup);
+    }
+  };
+
   const player1access = (e) => {
-    setplayer1Name(e.target.value)
-  }
+    setplayer1Name(e.target.value);
+  };
 
   const player2access = (e) => {
-    setplayer2Name(e.target.value)
-  }
+    setplayer2Name(e.target.value);
+  };
 
   const RuleFunc = () => {
     setshowRulesPopup(!showRulesPopup);
+  };
+
+  const HardModeFunc = () => {
+    setHardMode(!hardMode);
   };
 
   return (
@@ -109,6 +146,11 @@ function App() {
               <TransparentBtn
                 BtnName="NEW GAME"
                 newgame={NewGame}
+                icon={<FaArrowRotateRight className="icon" />}
+              />
+              <TransparentBtn
+                BtnName="START GAME"
+                startgame={StartGame}
                 icon={<FaCirclePlus className="icon" />}
               />
             </div>
@@ -121,16 +163,20 @@ function App() {
             />
             <Diceimage randomNum={randomGenNum} />
             <div className="middleBtns">
-              <TransparentBtn
-                rollDiceFunc={rollDice}
-                BtnName="ROLL DICE"
-                icon={<FaDice className="icon" />}
-              />
-              <TransparentBtn
-                holdDiceFunc={holdDice}
-                BtnName="HOLD"
-                icon={<FaPause className="icon" />}
-              />
+              {startGame && (
+                <TransparentBtn
+                  rollDiceFunc={rollDice}
+                  BtnName="ROLL DICE"
+                  icon={<FaDice className="icon" />}
+                />
+              )}
+              {startGame && (
+                <TransparentBtn
+                  holdDiceFunc={holdDice}
+                  BtnName="HOLD"
+                  icon={<FaPause className="icon" />}
+                />
+              )}
             </div>
           </div>
           <div className={`playertwo ${!activePlayer ? "active" : "inactive"}`}>
@@ -150,6 +196,7 @@ function App() {
           <SecondaryBtn
             BtnName="HARD MODE"
             icon={<FaSkullCrossbones className="icon" />}
+            clickHardModeBtn={HardModeFunc}
           />
           <InputBtn inputFunc={Input} />
           <SecondaryBtn
@@ -163,19 +210,25 @@ function App() {
             clickEditBtn={EditFunc}
           />
         </div>
+        <div>
+          {showWinnerPopup && (
+            <Winner
+              Name={winnerName}
+              Score={winnerScore}
+              closeBtn={callingWinnerFunc}
+            />
+          )}
+          {showEditPopup && (
+            <EditBtn
+              editclose={editCLose}
+              player1Name={player1access}
+              player2Name={player2access}
+              showwarning={showWarning}
+            />
+          )}
+          {showRulesPopup && <RulesBtn ruleclose={RuleFunc} />}
+        </div>
       </section>
-
-      <div>
-        {showWinnerPopup && (
-          <Winner
-            Name={winnerName}
-            Score={winnerScore}
-            closeBtn={callingWinnerFunc}
-          />
-        )}
-        {showEditPopup && <EditBtn editclose={EditFunc} player1Name={player1access} player2Name={player2access}/>}
-        {showRulesPopup && <RulesBtn ruleclose={RuleFunc} />}
-      </div>
     </>
   );
 }
