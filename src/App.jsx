@@ -5,7 +5,10 @@ import {
   SecondaryBtn,
   TransparentBtn,
 } from "./components/Button/button.component";
-import Diceimage from "./components/diceimage/diceimage.component";
+import {
+  Diceimage1,
+  Diceimage2,
+} from "./components/diceimage/diceimage.component";
 import { InputBtn } from "./components/InputComponent/input.component";
 import {
   FaCirclePlus,
@@ -23,14 +26,16 @@ import { EditBtn } from "./components/Edit/edit.component";
 import { RulesBtn } from "./components/RulesComponent/rules.component";
 
 function App() {
-  const [randomGenNum, setrandomGenNum] = useState(1);
+  const [randomGenNum1, setrandomGenNum1] = useState(1);
+  const [randomGenNum2, setrandomGenNum2] = useState(1);
+
   const [activePlayer, setactivePlayer] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
   const [playerScore, setPlayerScore] = useState([0, 0]);
-  const [input, setInput] = useState(10);
+  const [input, setInput] = useState(50);
 
   const [startGame, setStartGame] = useState(false);
-  const [hardMode, setHardMode] = useState(false);
+  const [mode, setMode] = useState("normal");
 
   const [showWinnerPopup, setWinnerPopup] = useState(false);
   const [winnerName, setWinnerName] = useState("");
@@ -44,14 +49,16 @@ function App() {
   const [showRulesPopup, setshowRulesPopup] = useState(false);
 
   const rollDice = () => {
-    const randomNum = Math.ceil(Math.random() * 6);
-    setrandomGenNum(randomNum);
+    const randomNum1 = Math.ceil(Math.random() * 6);
+    const randomNum2 = Math.ceil(Math.random() * 6);
+    setrandomGenNum1(randomNum1);
+    setrandomGenNum2(randomNum2);
 
-    if (randomNum !== 1) {
+    if (randomNum1 !== 1) {
       if (activePlayer === 0) {
-        setCurrentScore(currentScore + randomNum);
+        setCurrentScore(currentScore + randomNum1);
       } else {
-        setCurrentScore(currentScore + randomNum);
+        setCurrentScore(currentScore + randomNum1);
       }
     } else {
       if (activePlayer === 0) {
@@ -94,7 +101,7 @@ function App() {
     setCurrentScore(0);
     setPlayerScore([0, 0]);
     setactivePlayer(0);
-    setrandomGenNum(1);
+    setrandomGenNum1(1);
     setplayer1Name("Player1");
     setplayer2Name("Player2");
   };
@@ -134,12 +141,18 @@ function App() {
   };
 
   const HardModeFunc = () => {
-    setHardMode(!hardMode);
+    setMode("hard");
   };
+
+  const NormalModeFunc = () => {
+    setMode("normal");
+  };
+
+  let changeMode = mode === "hard" ? "hard-BG" : "normal-BG";
 
   return (
     <>
-      <section>
+      <section className={changeMode}>
         <div className="root-1">
           <div className={`playerone ${activePlayer ? "active" : "inactive"}`}>
             <div className="topBtns">
@@ -161,7 +174,8 @@ function App() {
               playeractive={activePlayer === 0}
               currentscore={activePlayer === 0 ? currentScore : 0}
             />
-            <Diceimage randomNum={randomGenNum} />
+            <Diceimage1 randomNum1={randomGenNum1} />
+            {mode === "hard" && <Diceimage2 randomNum2={randomGenNum2} />}
             <div className="middleBtns">
               {startGame && (
                 <TransparentBtn
@@ -192,6 +206,7 @@ function App() {
           <PrimaryBtn
             BtnName="NORMAL MODE"
             icon={<FaMugHot className="icon" />}
+            clickNormalModeBtn={NormalModeFunc}
           />
           <SecondaryBtn
             BtnName="HARD MODE"

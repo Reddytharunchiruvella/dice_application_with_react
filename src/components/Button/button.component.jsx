@@ -1,10 +1,18 @@
 import "./button.styles.css";
 
-export const PrimaryBtn = ({ BtnName, icon, clickEditBtn }) => {
+export const PrimaryBtn = ({
+  BtnName,
+  icon,
+  clickEditBtn,
+  clickNormalModeBtn,
+}) => {
   return (
     <>
       <div className="Primary">
-        <button className="primary_button" onClick={clickEditBtn}>
+        <button
+          className="primary_button"
+          onClick={clickEditBtn || clickNormalModeBtn}
+        >
           {icon}
           {BtnName}
         </button>

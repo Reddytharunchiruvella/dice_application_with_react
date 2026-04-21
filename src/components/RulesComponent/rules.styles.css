@@ -10,15 +10,17 @@
 }
 .rulesbutton {
   border: 1px solid grey;
+  border-radius: 10px;
   text-align: center;
   align-content: center;
   color: white;
   background: url("/src/assets/rules-backgroundimg.jpg");
   background-size: cover;
+  background-position: center;
   position: absolute;
-  top: 190px;
+  top: 100px;
   left: 50%;
-  height: 300px;
+  height: 500px;
   width: 40%;
   line-height: 1.8;
   transform: translate(-50%);
@@ -28,10 +30,11 @@
 .rulesbutton::before {
   content: "";
   background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
   position: absolute;
   top: 0;
   left: 0;
-  height: 300px;
+  height: 500px;
   width: 100%;
   z-index: -2;
 }

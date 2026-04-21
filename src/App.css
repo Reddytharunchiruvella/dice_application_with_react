@@ -4,8 +4,16 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
-section {
+.normal-BG {
   background: url("../src/assets/dice-backgroundimage-1.webp");
+  background-size: cover;
+  background-position: center;
+  height: 665px;
+  align-content: center;
+  justify-items: center;
+}
+.hard-BG {
+  background: url("./assets/hard-BG.webp");
   background-size: cover;
   background-position: center;
   height: 665px;

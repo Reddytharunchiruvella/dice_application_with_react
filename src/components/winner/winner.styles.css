@@ -18,6 +18,7 @@
 .winnerContainer::before {
   content: "";
   background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   position: absolute;
   top: 0;
   left: 0;

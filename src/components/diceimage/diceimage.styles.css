@@ -1,8 +1,16 @@
-.diceimage img{
-    height: 80px;
-    border: 1px solid black;
-    border-radius: 10px;
-    transform: translateX(80px);
-    position: absolute;
-    top: 200px;
+.diceimage-1 img {
+  height: 80px;
+  border: 1px solid black;
+  border-radius: 10px;
+  transform: translateX(80px);
+  position: absolute;
+  top: 200px;
+}
+.diceimage-2 img {
+  height: 80px;
+  border: 1px solid black;
+  border-radius: 10px;
+  transform: translateX(80px);
+  position: absolute;
+  top: 300px;
 }
