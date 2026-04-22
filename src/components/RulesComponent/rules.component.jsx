@@ -20,3 +20,22 @@ export const RulesBtn = ({ ruleclose }) => {
     </>
   );
 };
+
+export const HardModeRulesBtn = ({ruleclose}) => {
+  return (
+    <>
+      <div className="hardmoderulesbutton">
+        <h1>Rules Of The Game!!!</h1>
+        <ul id="ul">
+          <li>Including the rules before here are some New Rules.</li>
+          <li>Player looses 20 points his ENTIRE score when he rolls a 6 in a row. After that, it's the next player's turn.</li>
+          <li>The Global score is increased to 100 points.so first player reaching GLOBAL score wins the game.</li>
+          <li>Another dice is added to make the game faster to reach GLOBAL SCORE and interesting.GOOD LUCK BUDDY !!!</li>
+        </ul>
+        <button className="ruleok" onClick={ruleclose}>
+          Get Started!
+        </button>
+      </div>
+    </>
+  );
+};
