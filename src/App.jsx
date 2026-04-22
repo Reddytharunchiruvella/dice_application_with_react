@@ -66,26 +66,24 @@ function App() {
     setrandomGenNum2(randomNum2);
 
     if (mode === "hard") {
-      if (randomNum1 === 6 || randomNum2 === 6) {
+      const isSix = randomNum1 === 6 || randomNum2 === 6;
+      if (isSix) {
         if (lastROllSix === true) {
           if (activePlayer === 0) {
-            updatedScore[activePlayer] = Math.max(
-              0,
-              updatedScore[activePlayer] - 20,
-            );
+            updatedScore[activePlayer] = Math.max(0,updatedScore[activePlayer] - 20,);
             setPlayerScore(updatedScore);
             setCurrentScore(0);
             setactivePlayer(1 - activePlayer);
+            setLastRollSix(false);
+            return;
           } else {
-            updatedScore[activePlayer] = Math.max(
-              0,
-              updatedScore[activePlayer] - 20,
-            );
+            updatedScore[activePlayer] = Math.max(0,updatedScore[activePlayer] - 20,);
             setPlayerScore(updatedScore);
             setCurrentScore(0);
             setactivePlayer(1 - activePlayer);
+            setLastRollSix(false);
+            return;
           }
-          setLastRollSix(false);
         } else {
           if (randomNum1 === 1 || randomNum2 === 1) {
             if (activePlayer === 0) {
@@ -95,20 +93,14 @@ function App() {
             }
             setactivePlayer(1 - activePlayer);
           }
-          setLastRollSix(true);
-          if (activePlayer === 0) {
-            setPlayerScore(updatedScore);
-          } else {
-            setPlayerScore(updatedScore);
-          }
-        }
-        if (activePlayer === 0) {
+        else{
           setCurrentScore(currentScore + randomNum1 + randomNum2);
-        } else {
-          setCurrentScore(currentScore + randomNum1 + randomNum2);
+          setLastRollSix(true)
         }
+      }
       } else {
         if (randomNum1 === 1 || randomNum2 === 1) {
+          setLastRollSix(false)
           if (activePlayer === 0) {
             setCurrentScore(0);
           } else {
@@ -116,11 +108,8 @@ function App() {
           }
           setactivePlayer(1 - activePlayer);
         } else {
-          if (activePlayer === 0) {
-            setCurrentScore(currentScore + randomNum1 + randomNum2);
-          } else {
-            setCurrentScore(currentScore + randomNum1 + randomNum2);
-          }
+          setLastRollSix(false)
+          setCurrentScore(currentScore + randomNum1 + randomNum2);
         }
       }
     } else {
